@@ -35,7 +35,7 @@ while True:
         c3=gcd(c1,c2)
         sum1=c1/c3
         sum2=c2/c3
-        print(a1,"/",a2,"+",b1,"/",b2,"=",sum1,"/",sum2)
+        print(a1,"/",a2,"+",b1,"/",b2,"=",int(sum1),"/",int(sum2))
     elif a=="-":
         c1=a2
         c2=b2
@@ -48,21 +48,21 @@ while True:
         c3=gcd(c1,c2)
         sum1=c1/c3
         sum2=c2/c3
-        print(a1,"/",a2,"-",b1,"/",b2,"=",sum1,"/",sum2)
+        print(a1,"/",a2,"-",b1,"/",b2,"=",int(sum1),"/",int(sum2))
     elif a=="*":
         c1=a1*b1
         c2=a2*b2
         c3=gcd(c1,c2)
         sum1=c1/c3
         sum2=c2/c3
-        print(a1,"/",a2,"x",b1,"/",b2,"=",sum1,"/",sum2)
+        print(a1,"/",a2,"x",b1,"/",b2,"=",int(sum1),"/",int(sum2))
     elif a=="/":
         c1=a1*b2
         c2=a2*b1
         c3=gcd(c1,c2)
         sum1=c1/c3
         sum2=c2/c3
-        print(a1,"/",a2,"÷",b1,"/",b2,"=",sum1,"/",sum2)
+        print(a1,"/",a2,"÷",b1,"/",b2,"=",int(sum1),"/",int(sum2))
     n2=input("whether to quit(Y-N/ENTER)")
     if n2=="Y":
         break
