@@ -1,1 +1,1 @@
-# Albertchen like code at python
+# Albertchen & python
