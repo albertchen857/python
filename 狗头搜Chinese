@@ -1,0 +1,77 @@
+from datetime import datetime
+import datetime,easygui
+import webbrowser
+run=0
+autorun=0
+
+        
+
+print("                     狗头搜          ")
+while True:
+    def CutHour(time=datetime.datetime.now()):
+        new_time = str(time)
+        hour = new_time[11:19]
+        return "".join(hour)
+    print(CutHour())
+    print("默认运行引擎",end=":")
+    if run==0:
+        print("百度")
+    elif run==1:
+        print("必应国内")
+    elif run==2:
+        print("必应国外")
+    elif run==3:
+        print("搜狗")
+    elif run==4:
+        print("百度百科")
+    elif run==5:
+        print("B站")
+    print("打开设置输入 #SZ#")
+
+    search=input("搜索:")
+    if run==0:
+        web="https://www.baidu.com/s?tn=44004473_46_oem_dg&ie=utf-8&word="+search
+    elif run==1:
+        web="https://cn.bing.com/search?q="+search
+    elif run==2:
+        web="https://cn.bing.com/search?q="+search+"&ensearch=1&FORM=BESBTB"
+    elif run==3:
+        web="https://www.sogou.com/web?query="+search
+    elif run==4:
+        web="https://baike.baidu.com/item/"+search
+    elif run==5:
+        web="https://search.bilibili.com/all?keyword="+search+"&from_source=webtop_search&spm_id_from=333.1007"
+
+    if search=="#SZ#":
+        sz_main=easygui.buttonbox(msg="设置", title="设置页面", choices=("默认运行引擎", "开/关网址输入模式"))
+        if sz_main=="默认运行引擎":
+            sz_run=easygui.buttonbox(msg="选择默认运行引擎",title="运行引擎选择界面",choices=("百度","必应国内","必应国外","搜狗","百度百科","B站"))
+            if sz_run=="百度":
+                run=0
+            elif sz_run=="必应国内":
+                run=1
+            elif sz_run=="必应国外":
+                run=2
+            elif sz_run=="搜狗":
+                run=3
+            elif sz_run=="百度百科":
+                run=4
+            elif sz_run=="B站":
+                run=5
+        elif sz_main== "开/关网址输入模式":
+            if autorun==0:
+                auto1=easygui.buttonbox(msg="网址输入模式已关闭是否打开",choices=("取消","确定"))
+                if auto1=="确定":
+                    autorun=1
+            elif autorun==1:
+                auto1=easygui.buttonbox(msg="网址输入模式已打开是否关闭",choices=("取消","确定"))
+                if auto1=="确定":
+                    autorun=0
+    else:
+        if autorun==1:
+            webbrowser.open(search, new=0, autoraise=True) 
+        elif autorun==0:
+            webbrowser.open(web, new=0, autoraise=True) 
+
+
+
