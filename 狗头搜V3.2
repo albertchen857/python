@@ -1,0 +1,95 @@
+from datetime import datetime
+import datetime,easygui
+import webbrowser
+#默认引擎
+run=1
+history={}
+easygui.msgbox(msg='''更新日志：
+----2022/01/21:狗头搜-V0.1测试版发布
+----2022/01/23:狗头搜-V1.1微调:设置 & 按钮框
+----2022/07/05:狗头搜-V2.1更新搜狗搜索
+----2022/07/05:狗头搜-V2.2更新百度百科 & B站搜索
+----2022/08/21:狗头搜-V3.1更新UI界面 & 搜索历史
+----2022/08/21:狗头搜-V3.2网址搜索合并搜索引擎修改''',title="狗头搜V3.2")
+
+while True:
+    '''def CutHour(time=datetime.datetime.now()):
+        new_time = str(time)
+        hour = new_time[11:19]
+        return "".join(hour)
+    print(CutHour())'''
+    p1="默认运行引擎:"
+    if run==1:
+        p1=p1+"百度"
+    elif run==2:
+        p1=p1+"必应国内"
+    elif run==3:
+        p1=p1+"必应国外"
+    elif run==4:
+        p1=p1+"搜狗"
+    elif run==5:
+        p1=p1+"百度百科"
+    elif run==6:
+        p1=p1+"B站"
+    elif run==0:
+        p1=p1+"网址输入"
+    p1="狗头搜V3.2\n"+p1+"\n打开设置输入 #sz\n搜索:"
+
+    search=easygui.enterbox(p1,title="狗头搜V3.2")
+    if run==1:
+        web="https://www.baidu.com/s?tn=44004473_46_oem_dg&ie=utf-8&word="+search
+    elif run==2:
+        web="https://cn.bing.com/search?q="+search
+    elif run==3:
+        web="https://cn.bing.com/search?q="+search+"&ensearch=1&FORM=BESBTB"
+    elif run==4:
+        web="https://www.sogou.com/web?query="+search
+    elif run==5:
+        web="https://baike.baidu.com/item/"+search
+    elif run==6:
+        web="https://search.bilibili.com/all?keyword="+search+"&from_source=webtop_search&spm_id_from=333.1007"
+    
+    if search=="#sz":
+        sz_main=easygui.buttonbox(msg="设置", title="设置页面", choices=("默认运行引擎","搜索历史"))
+        if sz_main=="默认运行引擎":
+            sz_run=easygui.buttonbox(msg="选择默认运行引擎",title="运行引擎选择界面",choices=("百度","必应国内","必应国外","搜狗","百度百科","B站","网址输入"))
+            if sz_run=="百度":
+                run=1
+            elif sz_run=="必应国内":
+                run=2
+            elif sz_run=="必应国外":
+                run=3
+            elif sz_run=="搜狗":
+                run=4
+            elif sz_run=="百度百科":
+                run=5
+            elif sz_run=="B站":
+                run=6
+            elif sz_run=="网址输入":
+                run=0
+        elif sz_main=="搜索历史":
+            print("------------")
+            for i in history:
+                print(i,end="   ")
+                print(history[i][0],end="   ")
+                print(history[i][1],end="   ")
+            print("------------")
+    else:
+        if run==0:
+            webbrowser.open(search, new=0, autoraise=True) 
+            try:
+                a=search.split("/")
+                history[len(history)+1]=[a[2],web]
+            except:
+                easygui.msgbox("记录错误\n写网址要加 https:// 或 http://")
+        else:
+            webbrowser.open(web, new=0, autoraise=True) 
+            a=web.split("/")
+            history[len(history)+1]=[a[2],search]
+        
+
+
+
+
+
+
